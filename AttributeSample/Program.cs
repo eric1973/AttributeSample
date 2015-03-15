@@ -10,6 +10,18 @@ namespace AttributeSample
     {
         static void Main(string[] args)
         {
+            Print("i am obsolete");
+
+            Console.ReadLine();
+        }
+
+        /*
+         * Compile.Time Attribute: Compiler emits 1 warning that this method is obsolete.
+         * */
+        [Obsolete]
+        public static void Print(string text)
+        {
+            Console.WriteLine(text);
         }
     }
 }
