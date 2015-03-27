@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributedClasses\AttributedClass.cs" />
+    <Compile Include="Attributes\EBTestFixtureAttribute.cs" />
+    <Compile Include="Attributes\EBTestMethodAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
