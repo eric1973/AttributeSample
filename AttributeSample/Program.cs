@@ -17,16 +17,18 @@ namespace AttributeSample
             /*
              * Build in attribute Obsolete
              * */
-            Print("i am obsolete");
+            Print("Method Print() is obsolete");
 
             /*
              * Print custom attribute of current assembly
              * Look for EBTestAssembly in AssemblyInfo.cs (Properties Folder)
              * */
             PrintCustomAssemblyAttribute();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadLine();
 
-
-
+            PrintAllAssemblyAttributes();
+            Console.WriteLine("Press any key to continue..."); 
             Console.ReadLine();
         }
 
@@ -58,6 +60,35 @@ namespace AttributeSample
                                        customAttribute.GetType().Name,
                                        customAttribute.Description);
                 }
+            }
+        }
+
+        public static void PrintAllAssemblyAttributes()
+        {
+            Assembly assemblyToInspect = typeof(Program).Assembly;
+
+            Console.WriteLine(Environment.NewLine + 
+                              "Custom Attributes of assembly {0}:",                               
+                              assemblyToInspect.FullName);
+
+            foreach (var assemblyAttribute in assemblyToInspect.GetCustomAttributes())
+            {
+                string assemblydesc = assemblyAttribute.ToString();
+
+                AssemblyCopyrightAttribute copyright = assemblyAttribute as AssemblyCopyrightAttribute;
+
+                if (copyright != null)
+                {
+                    assemblydesc = copyright.Copyright;
+                }
+
+                Console.WriteLine(Environment.NewLine +
+                                  "Attributename: {1}" +
+                                  Environment.NewLine +
+                                  "AttributeDesc: {2}",
+                                  assemblyToInspect.FullName,
+                                  assemblyAttribute.GetType().Name,
+                                  assemblydesc);
             }
         }
     }
